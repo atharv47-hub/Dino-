@@ -50,7 +50,7 @@ const app =
 
 
 const db =
-    getFirestore(app);
+    getDatabase(app);
 
 
 const storage =
@@ -401,17 +401,14 @@ form.addEventListener(
             // SAVE TO FIRESTORE
             // ====================================
 
-            await addDoc(
+          const registrationRef = push(ref(database, "registrations"));
 
-                collection(
-                    db,
-                    "tournamentRegistrations"
-                ),
-
-                registrationData
-
-            );
-
+await set(registrationRef, {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    createdAt: new Date().toISOString()
+});
 
 
             // ====================================
