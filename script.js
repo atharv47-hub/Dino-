@@ -62,40 +62,28 @@ const storage =
 // ELEMENTS
 // ============================================
 
-const form =
-    document.getElementById(
-        "registrationForm"
-    );
+const form = document.getElementById("registrationForm");
 
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-const submitBtn =
-    document.getElementById(
-        "submitBtn"
-    );
+    try {
+        await addDoc(collection(db, "registrations"), {
+            teamName: document.getElementById("teamName").value,
+            captainName: document.getElementById("captainName").value,
+            phone: document.getElementById("phone").value,
+            registeredAt: new Date().toISOString()
+        });
 
+        alert("Registration successful!");
 
-const successMessage =
-    document.getElementById(
-        "successMessage"
-    );
+        form.reset();
 
-
-const registrationId =
-    document.getElementById(
-        "registrationId"
-    );
-
-
-const captainName =
-    document.getElementById(
-        "captainName"
-    );
-
-
-const player1Display =
-    document.getElementById(
-        "player1Display"
-    );
+    } catch (error) {
+        console.error(error);
+        alert("Registration failed!");
+    }
+});
 
 
 
