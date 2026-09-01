@@ -43,7 +43,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCfQcKHDHzHFnCLS9rRUj4LYNgburyTCNY",
   authDomain: "thanos-d2084.firebaseapp.com",
-    databaseURL:"https://console.firebase.google.com/u/0/project/thanos-d2084/database/thanos-d2084-default-rtdb/data/~2F",
+    databaseURL:"https://thanos-d2084-default-rtdb.firebaseio.com",
   projectId: "thanos-d2084",
   storageBucket: "thanos-d2084.firebasestorage.app",
   messagingSenderId: "372842588023",
