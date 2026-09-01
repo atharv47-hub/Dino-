@@ -22,16 +22,14 @@ import {
   ref,
   push,
   set
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
-
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
 
 
