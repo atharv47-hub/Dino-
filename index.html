@@ -1,144 +1,468 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chrome Dino Game</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-    canvas {
-      display: block;
-      background: #f7f7f7;
-      border: 2px solid #000;
-    }
-    #score {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-    #jumpButton {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 15px 30px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    #jumpButton:active {
-      background-color: #45a049;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Fire Tournament | Registration</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div id="score">Score: 0</div>
-  <canvas id="gameCanvas"></canvas>
-  <button id="jumpButton">Jump</button>
-  <script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight / 2;
 
-    let isJumping = false;
-    let jumpSpeed = 0;
-    let score = 0;
+<!-- NAVBAR -->
+<nav class="navbar">
 
-    const dino = {
-      x: 50,
-      y: canvas.height - 50,
-      width: 40,
-      height: 40,
-      color: 'black'
-    };
+    <div class="logo">
+        <span>FREE</span> FIRE
+    </div>
 
-    const obstacle = {
-      x: canvas.width,
-      y: canvas.height - 50,
-      width: 20,
-      height: 40,
-      color: 'red',
-      speed: 4
-    };
+    <div class="nav-links">
+        <a href="#home">HOME</a>
+        <a href="#about">TOURNAMENT</a>
+        <a href="#register">REGISTER</a>
+    </div>
 
-    function drawDino() {
-      ctx.fillStyle = dino.color;
-      ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
-    }
+</nav>
 
-    function drawObstacle() {
-      ctx.fillStyle = obstacle.color;
-      ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-    }
 
-    function jump() {
-      if (!isJumping) {
-        isJumping = true;
-        jumpSpeed = -10;
-      }
-    }
+<!-- HERO -->
+<section id="home" class="hero">
 
-    function detectCollision() {
-      if (
-        dino.x < obstacle.x + obstacle.width &&
-        dino.x + dino.width > obstacle.x &&
-        dino.y < obstacle.y + obstacle.height &&
-        dino.y + dino.height > obstacle.y
-      ) {
-        alert('Game Over! Your score: ' + score);
-        document.location.reload();
-      }
-    }
+    <div class="hero-content">
 
-    function updateGame() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+        <div class="badge">
+            🔥 BATTLE ROYALE • SQUAD
+        </div>
 
-      // Dino movement
-      if (isJumping) {
-        dino.y += jumpSpeed;
-        jumpSpeed += 0.5;
-        if (dino.y >= canvas.height - 50) {
-          dino.y = canvas.height - 50;
-          isJumping = false;
-        }
-      }
+        <h1>
+            FREE FIRE
+            <strong>CHAMPIONSHIP</strong>
+        </h1>
 
-      // Obstacle movement
-      obstacle.x -= obstacle.speed;
-      if (obstacle.x < -obstacle.width) {
-        obstacle.x = canvas.width;
-        score++;
-        document.getElementById('score').innerText = 'Score: ' + score;
-      }
+        <p>
+            Gather your squad. Enter the battlefield.
+            Become the ultimate champion.
+        </p>
 
-      // Draw elements
-      drawDino();
-      drawObstacle();
+        <a href="#register" class="main-btn">
+            REGISTER YOUR TEAM
+            <span>→</span>
+        </a>
 
-      // Check for collisions
-      detectCollision();
+    </div>
 
-      requestAnimationFrame(updateGame);
-    }
+</section>
 
-    // Event listeners for jumping
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'Space') jump();
-    });
 
-    document.getElementById('jumpButton').addEventListener('click', jump);
+<!-- TOURNAMENT STATS -->
+<section class="stats">
 
-    updateGame();
-  </script>
+    <div class="stat">
+        <span>🎮</span>
+        <h3>GAME</h3>
+        <p>FREE FIRE</p>
+    </div>
+
+    <div class="stat">
+        <span>👥</span>
+        <h3>FORMAT</h3>
+        <p>SQUAD - 4 PLAYERS</p>
+    </div>
+
+    <div class="stat">
+        <span>💰</span>
+        <h3>ENTRY FEE</h3>
+        <p>₹50 / TEAM</p>
+    </div>
+
+    <div class="stat">
+        <span>🏆</span>
+        <h3>PRIZE POOL</h3>
+        <p>₹5,000</p>
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="about">
+
+    <div class="section-title">
+        <span>01</span>
+        <h2>TOURNAMENT DETAILS</h2>
+    </div>
+
+    <div class="details">
+
+        <div class="detail-box">
+            <h3>🏆 GRAND PRIZE</h3>
+            <strong>₹500</strong>
+            <p>Prize money for the winning squad.</p>
+        </div>
+
+        <div class="detail-box">
+            <h3>🎯 GAME MODE</h3>
+            <strong>SQUAD</strong>
+            <p>4 players per registered team.</p>
+        </div>
+
+        <div class="detail-box">
+            <h3>⚡ ENTRY</h3>
+            <strong>₹50</strong>
+            <p>One registration fee per team.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REGISTRATION -->
+<section id="register" class="registration">
+
+    <div class="section-title center">
+        <span>02</span>
+        <h2>REGISTER YOUR SQUAD</h2>
+        <p>Complete the form below to enter the tournament.</p>
+    </div>
+
+
+    <div class="form-wrapper">
+
+        <form id="registrationForm">
+
+            <!-- TEAM -->
+            <div class="form-section">
+
+                <div class="form-heading">
+                    <span>01</span>
+                    <div>
+                        <h3>TEAM INFORMATION</h3>
+                        <p>Enter your squad details</p>
+                    </div>
+                </div>
+
+
+                <label>TEAM NAME</label>
+
+                <input
+                    type="text"
+                    id="teamName"
+                    placeholder="Enter your team name"
+                    required
+                >
+
+
+                <label>CAPTAIN NAME</label>
+
+                <input
+                    type="text"
+                    id="captainName"
+                    placeholder="Enter captain name"
+                    required
+                >
+
+
+                <div class="two-columns">
+
+                    <div>
+
+                        <label>MOBILE NUMBER</label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            placeholder="10 digit number"
+                            maxlength="10"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>CAPTAIN UID</label>
+
+                        <input
+                            type="text"
+                            id="captainUID"
+                            placeholder="Free Fire UID"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLAYERS -->
+            <div class="form-section">
+
+                <div class="form-heading">
+
+                    <span>02</span>
+
+                    <div>
+                        <h3>PLAYER INFORMATION</h3>
+                        <p>Enter all 4 players</p>
+                    </div>
+
+                </div>
+
+
+                <div class="player">
+
+                    <div class="player-number">01</div>
+
+                    <div class="player-content">
+
+                        <h4>CAPTAIN</h4>
+
+                        <input
+                            type="text"
+                            id="player1Display"
+                            placeholder="Captain name"
+                            disabled
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="player">
+
+                    <div class="player-number">02</div>
+
+                    <div class="player-content">
+
+                        <h4>PLAYER 2</h4>
+
+                        <input
+                            type="text"
+                            id="player2"
+                            placeholder="Player 2 name"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="uid2"
+                            placeholder="Player 2 UID"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="player">
+
+                    <div class="player-number">03</div>
+
+                    <div class="player-content">
+
+                        <h4>PLAYER 3</h4>
+
+                        <input
+                            type="text"
+                            id="player3"
+                            placeholder="Player 3 name"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="uid3"
+                            placeholder="Player 3 UID"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="player">
+
+                    <div class="player-number">04</div>
+
+                    <div class="player-content">
+
+                        <h4>PLAYER 4</h4>
+
+                        <input
+                            type="text"
+                            id="player4"
+                            placeholder="Player 4 name"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="uid4"
+                            placeholder="Player 4 UID"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT -->
+            <div class="form-section payment-section">
+
+                <div class="form-heading">
+
+                    <span>03</span>
+
+                    <div>
+                        <h3>PAYMENT</h3>
+                        <p>Complete payment to confirm registration</p>
+                    </div>
+
+                </div>
+
+
+                <div class="payment-card">
+
+                    <div class="payment-info">
+
+                        <p>REGISTRATION FEE</p>
+
+                        <h2>₹50</h2>
+
+                        <p>
+                            Scan the QR code using any UPI app.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qr-container">
+
+                        <img
+                            src="payment-qr.png"
+                            alt="Payment QR Code"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label>UPI TRANSACTION ID / UTR</label>
+
+                <input
+                    type="text"
+                    id="transactionId"
+                    placeholder="Enter your transaction ID"
+                    required
+                >
+
+
+                <label>PAYMENT SCREENSHOT</label>
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="paymentScreenshot"
+                        accept="image/*"
+                        required
+                    >
+
+                    <span>📷</span>
+
+                    <p>
+                        Upload payment screenshot
+                    </p>
+
+                    <small>
+                        JPG, PNG up to 5MB
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <button
+                type="submit"
+                id="submitBtn"
+                class="submit-btn"
+            >
+
+                <span>🔥</span>
+
+                CONFIRM REGISTRATION
+
+                <span>→</span>
+
+            </button>
+
+        </form>
+
+
+        <!-- SUCCESS -->
+        <div
+            id="successMessage"
+            class="success"
+        >
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>REGISTRATION SUCCESSFUL!</h2>
+
+            <p>Your team has been registered.</p>
+
+            <div class="reg-box">
+
+                <small>REGISTRATION ID</small>
+
+                <h1 id="registrationId"></h1>
+
+            </div>
+
+            <p class="save-text">
+                ⚠️ Save this Registration ID for future reference.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-logo">
+        FREE <span>FIRE</span>
+    </div>
+
+    <p>
+        © 2026 Free Fire Championship.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script type="module" src="script.js"></script>
+
 </body>
 </html>
