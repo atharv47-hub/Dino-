@@ -13,8 +13,16 @@ import {
     collection,
     addDoc,
     serverTimestamp
+    
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+  getDatabase,
+  ref,
+  push,
+  set
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
 
 import {
