@@ -31,25 +31,15 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 // FIREBASE CONFIG
 // ============================================
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-
-    apiKey: "YOUR_API_KEY",
-
-    authDomain:
-        "YOUR_PROJECT.firebaseapp.com",
-
-    projectId:
-        "YOUR_PROJECT_ID",
-
-    storageBucket:
-        "YOUR_PROJECT.firebasestorage.app",
-
-    messagingSenderId:
-        "YOUR_MESSAGING_SENDER_ID",
-
-    appId:
-        "YOUR_APP_ID"
-
+  apiKey: "AIzaSyCfQcKHDHzHFnCLS9rRUj4LYNgburyTCNY",
+  authDomain: "thanos-d2084.firebaseapp.com",
+  projectId: "thanos-d2084",
+  storageBucket: "thanos-d2084.firebasestorage.app",
+  messagingSenderId: "372842588023",
+  appId: "1:372842588023:web:bdf6238ceba6823bf2e372",
+  measurementId: "G-WN03HQ794S"
 };
 
 
