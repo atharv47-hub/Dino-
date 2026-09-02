@@ -29,29 +29,30 @@ const confTeam = document.getElementById("confTeam");
 const confUid = document.getElementById("confUid");
 const confRegId = document.getElementById("confRegId");
 
-// Handle Form Submission
+// Form Submission Event
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   submitBtn.disabled = true;
-  submitBtn.innerText = "Uploading & Registering...";
+  submitBtn.innerText = "Registering...";
 
   try {
     const fileInput = document.getElementById("paymentScreenshot");
-    const file = fileInput.files[0];
     let screenshotUrl = "";
 
-    // 1. Upload Screenshot to Firebase Storage if selected
-    if (file) {
+    // Upload Screenshot if file input exists and a file is selected
+    if (fileInput && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
       const cleanFileName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
       const storagePath = `payments/${Date.now()}_${cleanFileName}`;
       const imageRef = sRef(storage, storagePath);
 
+      submitBtn.innerText = "Uploading Screenshot...";
       await uploadBytes(imageRef, file);
       screenshotUrl = await getDownloadURL(imageRef);
     }
 
-    // 2. Prepare payload for Realtime Database
+    // Prepare Registration Payload
     const registrationData = {
       teamName: document.getElementById("teamName").value.trim(),
       captainName: document.getElementById("captainName").value.trim(),
@@ -63,24 +64,27 @@ form.addEventListener("submit", async (e) => {
       registeredAt: new Date().toISOString()
     };
 
-    // 3. Push to Firebase Realtime Database
+    submitBtn.innerText = "Saving Details...";
+
+    // Push data to Firebase Realtime Database
     const registrationsRef = ref(database, "registrations");
     const newEntryRef = push(registrationsRef);
     await set(newEntryRef, registrationData);
 
-    // 4. Update and display Success Screen
+    // Populate Success Screen Details
     confTeam.innerText = registrationData.teamName;
     confUid.innerText = registrationData.captainUid;
     confRegId.innerText = newEntryRef.key;
 
+    // Transition Screens (Removes class and applies inline styles)
     formContainer.classList.add("hidden");
-    formContainer.style.display = "none";
+    formContainer.style.setProperty("display", "none", "important");
 
     successContainer.classList.remove("hidden");
-    successContainer.style.display = "block";
+    successContainer.style.setProperty("display", "block", "important");
 
   } catch (error) {
-    console.error("Submission failed:", error);
+    console.error("Registration failed:", error);
     alert("Error saving registration: " + error.message);
     submitBtn.disabled = false;
     submitBtn.innerText = "Register Squad";
