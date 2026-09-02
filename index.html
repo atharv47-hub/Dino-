@@ -1,468 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Free Fire Tournament | Registration</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Fire Tournament Registration</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="container">
+    
+    <!-- Registration Form Section -->
+    <div id="formContainer" class="card">
+      <div class="header">
+        <h1>🔥 FREE FIRE BATTLEGROUNDS 🔥</h1>
+        <p>Enter your squad details and complete payment to register.</p>
+      </div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-
-    <div class="logo">
-        <span>FREE</span> FIRE
-    </div>
-
-    <div class="nav-links">
-        <a href="#home">HOME</a>
-        <a href="#about">TOURNAMENT</a>
-        <a href="#register">REGISTER</a>
-    </div>
-
-</nav>
-
-
-<!-- HERO -->
-<section id="home" class="hero">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            🔥 BATTLE ROYALE • SQUAD
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="teamName">Team Name</label>
+          <input type="text" id="teamName" required placeholder="e.g., Circuit Squad" />
         </div>
 
-        <h1>
-            FREE FIRE
-            <strong>CHAMPIONSHIP</strong>
-        </h1>
-
-        <p>
-            Gather your squad. Enter the battlefield.
-            Become the ultimate champion.
-        </p>
-
-        <a href="#register" class="main-btn">
-            REGISTER YOUR TEAM
-            <span>→</span>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- TOURNAMENT STATS -->
-<section class="stats">
-
-    <div class="stat">
-        <span>🎮</span>
-        <h3>GAME</h3>
-        <p>FREE FIRE</p>
-    </div>
-
-    <div class="stat">
-        <span>👥</span>
-        <h3>FORMAT</h3>
-        <p>SQUAD - 4 PLAYERS</p>
-    </div>
-
-    <div class="stat">
-        <span>💰</span>
-        <h3>ENTRY FEE</h3>
-        <p>₹50 / TEAM</p>
-    </div>
-
-    <div class="stat">
-        <span>🏆</span>
-        <h3>PRIZE POOL</h3>
-        <p>₹5,000</p>
-    </div>
-
-</section>
-
-
-<!-- ABOUT -->
-<section id="about" class="about">
-
-    <div class="section-title">
-        <span>01</span>
-        <h2>TOURNAMENT DETAILS</h2>
-    </div>
-
-    <div class="details">
-
-        <div class="detail-box">
-            <h3>🏆 GRAND PRIZE</h3>
-            <strong>₹500</strong>
-            <p>Prize money for the winning squad.</p>
+        <div class="form-group">
+          <label for="captainName">Captain Name</label>
+          <input type="text" id="captainName" required placeholder="Captain full name" />
         </div>
 
-        <div class="detail-box">
-            <h3>🎯 GAME MODE</h3>
-            <strong>SQUAD</strong>
-            <p>4 players per registered team.</p>
+        <div class="form-group">
+          <label for="captainUid">Captain Free Fire UID</label>
+          <input type="text" id="captainUid" required placeholder="e.g., 1029384756" />
         </div>
 
-        <div class="detail-box">
-            <h3>⚡ ENTRY</h3>
-            <strong>₹50</strong>
-            <p>One registration fee per team.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="name@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="phone">WhatsApp Phone Number</label>
+            <input type="tel" id="phone" required placeholder="e.g., 9876543210" />
+          </div>
         </div>
 
-    </div>
-
-</section>
-
-
-<!-- REGISTRATION -->
-<section id="register" class="registration">
-
-    <div class="section-title center">
-        <span>02</span>
-        <h2>REGISTER YOUR SQUAD</h2>
-        <p>Complete the form below to enter the tournament.</p>
-    </div>
-
-
-    <div class="form-wrapper">
-
-        <form id="registrationForm">
-
-            <!-- TEAM -->
-            <div class="form-section">
-
-                <div class="form-heading">
-                    <span>01</span>
-                    <div>
-                        <h3>TEAM INFORMATION</h3>
-                        <p>Enter your squad details</p>
-                    </div>
-                </div>
-
-
-                <label>TEAM NAME</label>
-
-                <input
-                    type="text"
-                    id="teamName"
-                    placeholder="Enter your team name"
-                    required
-                >
-
-
-                <label>CAPTAIN NAME</label>
-
-                <input
-                    type="text"
-                    id="captainName"
-                    placeholder="Enter captain name"
-                    required
-                >
-
-
-                <div class="two-columns">
-
-                    <div>
-
-                        <label>MOBILE NUMBER</label>
-
-                        <input
-                            type="tel"
-                            id="mobile"
-                            placeholder="10 digit number"
-                            maxlength="10"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div>
-
-                        <label>CAPTAIN UID</label>
-
-                        <input
-                            type="text"
-                            id="captainUID"
-                            placeholder="Free Fire UID"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PLAYERS -->
-            <div class="form-section">
-
-                <div class="form-heading">
-
-                    <span>02</span>
-
-                    <div>
-                        <h3>PLAYER INFORMATION</h3>
-                        <p>Enter all 4 players</p>
-                    </div>
-
-                </div>
-
-
-                <div class="player">
-
-                    <div class="player-number">01</div>
-
-                    <div class="player-content">
-
-                        <h4>CAPTAIN</h4>
-
-                        <input
-                            type="text"
-                            id="player1Display"
-                            placeholder="Captain name"
-                            disabled
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="player">
-
-                    <div class="player-number">02</div>
-
-                    <div class="player-content">
-
-                        <h4>PLAYER 2</h4>
-
-                        <input
-                            type="text"
-                            id="player2"
-                            placeholder="Player 2 name"
-                            required
-                        >
-
-                        <input
-                            type="text"
-                            id="uid2"
-                            placeholder="Player 2 UID"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="player">
-
-                    <div class="player-number">03</div>
-
-                    <div class="player-content">
-
-                        <h4>PLAYER 3</h4>
-
-                        <input
-                            type="text"
-                            id="player3"
-                            placeholder="Player 3 name"
-                            required
-                        >
-
-                        <input
-                            type="text"
-                            id="uid3"
-                            placeholder="Player 3 UID"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="player">
-
-                    <div class="player-number">04</div>
-
-                    <div class="player-content">
-
-                        <h4>PLAYER 4</h4>
-
-                        <input
-                            type="text"
-                            id="player4"
-                            placeholder="Player 4 name"
-                            required
-                        >
-
-                        <input
-                            type="text"
-                            id="uid4"
-                            placeholder="Player 4 UID"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PAYMENT -->
-            <div class="form-section payment-section">
-
-                <div class="form-heading">
-
-                    <span>03</span>
-
-                    <div>
-                        <h3>PAYMENT</h3>
-                        <p>Complete payment to confirm registration</p>
-                    </div>
-
-                </div>
-
-
-                <div class="payment-card">
-
-                    <div class="payment-info">
-
-                        <p>REGISTRATION FEE</p>
-
-                        <h2>₹50</h2>
-
-                        <p>
-                            Scan the QR code using any UPI app.
-                        </p>
-
-                    </div>
-
-
-                    <div class="qr-container">
-
-                        <img
-                            src="payment-qr.png"
-                            alt="Payment QR Code"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <label>UPI TRANSACTION ID / UTR</label>
-
-                <input
-                    type="text"
-                    id="transactionId"
-                    placeholder="Enter your transaction ID"
-                    required
-                >
-
-
-                <label>PAYMENT SCREENSHOT</label>
-
-                <div class="upload-box">
-
-                    <input
-                        type="file"
-                        id="paymentScreenshot"
-                        accept="image/*"
-                        required
-                    >
-
-                    <span>📷</span>
-
-                    <p>
-                        Upload payment screenshot
-                    </p>
-
-                    <small>
-                        JPG, PNG up to 5MB
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <!-- SUBMIT -->
-            <button
-                type="submit"
-                id="submitBtn"
-                class="submit-btn"
-            >
-
-                <span>🔥</span>
-
-                CONFIRM REGISTRATION
-
-                <span>→</span>
-
-            </button>
-
-        </form>
-
-
-        <!-- SUCCESS -->
-        <div
-            id="successMessage"
-            class="success"
-        >
-
-            <div class="success-icon">
-                ✓
-            </div>
-
-            <h2>REGISTRATION SUCCESSFUL!</h2>
-
-            <p>Your team has been registered.</p>
-
-            <div class="reg-box">
-
-                <small>REGISTRATION ID</small>
-
-                <h1 id="registrationId"></h1>
-
-            </div>
-
-            <p class="save-text">
-                ⚠️ Save this Registration ID for future reference.
-            </p>
-
+        <!-- Payment Details & QR Code -->
+        <div class="payment-section">
+          <h3>Payment Section (Entry Fee: ₹50)</h3>
+          <p class="sub-text">Scan the QR code below via GPay/PhonePe/Paytm, then paste the 12-digit UPI Transaction/UTR ID below.</p>
+          
+          <div class="qr-box">
+            <img src="qr.png" alt="Payment QR Code" id="qrImage" />
+          </div>
+
+          <div class="form-group">
+            <label for="transactionId">UPI Reference / UTR Number</label>
+            <input type="text" id="transactionId" required placeholder="12-digit Transaction ID" />
+          </div>
         </div>
 
+        <button type="submit" id="submitBtn" class="btn">Register Squad</button>
+      </form>
     </div>
 
-</section>
+    <!-- Success Confirmation Section (Hidden by Default) -->
+    <div id="successContainer" class="card hidden">
+      <div class="success-content">
+        <div class="check-icon">✓</div>
+        <h2 class="thank-you-title">Thank You for Registration!</h2>
+        <p class="success-subtitle">Your registration has been received successfully.</p>
+        
+        <div class="details-box">
+          <p><strong>Team Name:</strong> <span id="confTeam"></span></p>
+          <p><strong>Captain UID:</strong> <span id="confUid"></span></p>
+          <p><strong>Registration ID:</strong> <span id="confRegId"></span></p>
+        </div>
 
-
-<!-- FOOTER -->
-<footer>
-
-    <div class="footer-logo">
-        FREE <span>FIRE</span>
+        <p class="notice">Match room ID and password will be sent to your WhatsApp number 1 hour prior to the tournament.</p>
+        <button type="button" onclick="window.location.reload()" class="btn secondary">Register Another Team</button>
+      </div>
     </div>
 
-    <p>
-        © 2026 Free Fire Championship.
-        All Rights Reserved.
-    </p>
+  </div>
 
-</footer>
-
-
-<script type="module" src="script.js"></script>
-
+  <script type="module" src="script.js"></script>
 </body>
 </html>
