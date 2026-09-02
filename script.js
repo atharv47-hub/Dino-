@@ -1,20 +1,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCfQcKHDHzHFnCLS9rRUj4LYNgburyTCNY",
   authDomain: "starlord-4481e.firebaseapp.com",
   databaseURL: "https://starlord-4481e-default-rtdb.firebaseio.com",
   projectId: "starlord-4481e",
-  storageBucket: "starlord-4481e.firebasestorage.app",
   messagingSenderId: "372842588023",
   appId: "1:372842588023:web:bdf6238ceba6823bf2e372"
 };
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const storage = getStorage(app);
 
 const form = document.getElementById("registrationForm");
 const submitBtn = document.getElementById("submitBtn");
@@ -25,58 +22,41 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   submitBtn.disabled = true;
-  submitBtn.innerText = "Processing...";
+  submitBtn.innerText = "Registering...";
+
+  // Grab the selected file name if a user picked one (no upload needed)
+  const fileInput = document.getElementById("paymentScreenshot");
+  const fileName = fileInput && fileInput.files[0] ? fileInput.files[0].name : "None";
+
+  const registrationData = {
+    teamName: document.getElementById("teamName").value.trim(),
+    captainName: document.getElementById("captainName").value.trim(),
+    captainUid: document.getElementById("captainUid").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    transactionId: document.getElementById("transactionId").value.trim(),
+    screenshotFileName: fileName,
+    registeredAt: new Date().toISOString()
+  };
 
   try {
-    let screenshotUrl = "None";
-    const fileInput = document.getElementById("paymentScreenshot");
+    const registrationsRef = ref(database, "registrations");
+    const newEntryRef = push(registrationsRef);
 
-    // Upload only if the element exists and a file is selected
-    if (fileInput && fileInput.files && fileInput.files[0]) {
-      try {
-        submitBtn.innerText = "Uploading Image...";
-        const file = fileInput.files[0];
-        const cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const imageRef = sRef(storage, `payments/${Date.now()}_${cleanName}`);
-        await uploadBytes(imageRef, file);
-        screenshotUrl = await getDownloadURL(imageRef);
-      } catch (storageErr) {
-        console.warn("Storage upload failed, continuing with registration:", storageErr);
-      }
-    }
-
-    submitBtn.innerText = "Saving Details...";
-
-    const registrationData = {
-      teamName: document.getElementById("teamName")?.value.trim() || "",
-      captainName: document.getElementById("captainName")?.value.trim() || "",
-      captainUid: document.getElementById("captainUid")?.value.trim() || "",
-      email: document.getElementById("email")?.value.trim() || "",
-      phone: document.getElementById("phone")?.value.trim() || "",
-      transactionId: document.getElementById("transactionId")?.value.trim() || "",
-      paymentScreenshotUrl: screenshotUrl,
-      registeredAt: new Date().toISOString()
-    };
-
-    const newEntryRef = push(ref(database, "registrations"));
+    // Save directly to Realtime Database
     await set(newEntryRef, registrationData);
 
-    // Update screen data safely
-    const elTeam = document.getElementById("confTeam");
-    const elUid = document.getElementById("confUid");
-    const elReg = document.getElementById("confRegId");
+    // Populate receipt
+    document.getElementById("confTeam").innerText = registrationData.teamName;
+    document.getElementById("confUid").innerText = registrationData.captainUid;
+    document.getElementById("confRegId").innerText = newEntryRef.key;
 
-    if (elTeam) elTeam.innerText = registrationData.teamName;
-    if (elUid) elUid.innerText = registrationData.captainUid;
-    if (elReg) elReg.innerText = newEntryRef.key;
-
-    // Direct DOM switch
+    // Switch view immediately to Thank You page
     formContainer.setAttribute("style", "display: none !important");
     successContainer.setAttribute("style", "display: block !important");
-
   } catch (error) {
-    console.error("Critical registration failure:", error);
-    alert("Error: " + error.message);
+    console.error("Submission failed:", error);
+    alert("Submission Error: " + error.message);
     submitBtn.disabled = false;
     submitBtn.innerText = "Register Squad";
   }
